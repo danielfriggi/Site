@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daniel & Bianca ❤️</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:url('FTN_2100.jpg') center/cover no-repeat;
+      filter:brightness(.45);
+      z-index:-2;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.28);
+      z-index:-1;
+    }
+
+    .card{
+      width:100%;
+      max-width:520px;
+      background:rgba(255, 255, 255, 0.94);
+      opacity: 0.7;
+      backdrop-filter:blur(6px);
+      border-radius:20px;
+      padding:28px;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      text-align:center;
+    }
+
+    h1{
+      margin:0 0 8px;
+      font-size:30px;
+    }
+
+    p{
+      color:#444;
+      line-height:1.45;
+    }
+
+    .sub{
+      font-size:14px;
+      color:#666;
+      margin-bottom:18px;
+    }
+
+    input{
+      display:none;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      border-radius:12px;
+      padding:15px;
+      margin-top:10px;
+      font-size:16px;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .btn-primary{
+      background:#7e1d81;
+      color:white;
+    }
+
+    .btn-secondary{
+      background:#b2b411da;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    #preview{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      margin-top:20px;
+    }
+
+    #preview img{
+      width:100%;
+      aspect-ratio:1;
+      object-fit:cover;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,.1);
+    }
+
+    #count{
+      margin-top:12px;
+      font-size:14px;
+      color:#555;
+    }
+
+    #status{
+      margin-top:16px;
+      font-weight:bold;
+    }
+
+    .obs{
+      margin-top:18px;
+      font-size:13px;
+      color:#666;
+      border-top:1px solid #ddd;
+      padding-top:14px;
+    }
+    @media (max-width: 600px) {
+  .card{
+    padding:20px 16px;
+    border-radius:16px;
+    max-width:360px;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  p{
+    font-size:14px;
+    margin-bottom:6px;
+  }
+
+  .sub,
+  .obs{
+    font-size:12px;
+  }
+
+  .btn{
+    padding:12px;
+    font-size:14px;
+    border-radius:10px;
+  }
+
+  #preview{
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    margin-top:14px;
+  }
+
+  #preview img{
+    border-radius:8px;
+  }
+
+  #count{
+    font-size:12px;
+    margin-top:10px;
+  }
+
+  #status{
+    font-size:13px;
+  }
+}
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Daniel & Bianca ❤️</h1>
+  <p>Compartilhe suas fotos desse momento com a gente</p>
+  <div class="sub">Escolha quantas quiser e envie tudo de uma vez 📸</div>
+
+  <input id="camera" type="file" accept="image/*" capture="environment" hidden>
+<input id="gallery" type="file" accept="image/*" multiple hidden>
+
+<button class="btn btn-secondary" onclick="document.getElementById('camera').click()">
+  📷 Tirar foto
+</button>
+
+<button class="btn btn-secondary" onclick="document.getElementById('gallery').click()">
+  🖼️ Escolher da galeria
+</button>
+
+<button class="btn btn-primary" onclick="upload()">
+  Enviar fotos
+</button>
+
+  <div id="count"></div>
+  <div id="preview"></div>
+  <div id="status"></div>
+
+  <div class="obs">
+    🎥 Obs: Caso grave videos, me envie no privado depois 🙂
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+<script>
+let selected = [];
+
+function updatePreview() {
+  const preview = document.getElementById('preview');
+  const count = document.getElementById('count');
+
+  preview.innerHTML = "";
+
+  count.innerText = selected.length
+    ? `${selected.length} foto(s) selecionada(s)`
+    : "";
+
+  selected.forEach((file, index) => {
+    const reader = new FileReader();
+
+    reader.onload = e => {
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+
+      const img = document.createElement('img');
+      img.src = e.target.result;
+
+      const remove = document.createElement('button');
+      remove.innerText = '✕';
+      remove.type = 'button';
+
+      remove.style.position = 'absolute';
+      remove.style.top = '6px';
+      remove.style.right = '6px';
+      remove.style.width = '26px';
+      remove.style.height = '26px';
+      remove.style.border = 'none';
+      remove.style.borderRadius = '50%';
+      remove.style.background = 'rgba(0,0,0,.7)';
+      remove.style.color = 'white';
+      remove.style.cursor = 'pointer';
+      remove.style.fontSize = '14px';
+
+      remove.onclick = () => {
+        selected.splice(index, 1);
+        updatePreview();
+      };
+
+      wrapper.appendChild(img);
+      wrapper.appendChild(remove);
+      preview.appendChild(wrapper);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById('camera').addEventListener('change', function () {
+  selected.push(...this.files);
+  this.value = "";
+  updatePreview();
+});
+
+document.getElementById('gallery').addEventListener('change', function () {
+  selected.push(...this.files);
+  this.value = "";
+  updatePreview();
+});
+</script>
+
+</body>
+</html>
