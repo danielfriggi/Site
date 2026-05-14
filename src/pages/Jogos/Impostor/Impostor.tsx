@@ -84,18 +84,29 @@ export default function Impostor() {
     }
   }
 
-  function resetGame() {
-    setPlayers([])
-    setGameStarted(false)
-    setCurrentIndex(0)
-    setCommonWord("")
-    setImpostorIndex(null)
-    setShowWord(false)
-    setTimer(0)
-    setShowEndGame(false)
-    setRevealedImpostor(null)
-    setCategoria("")
+function resetGame() {
+  const manterNomes = window.confirm("Deseja manter os mesmos nomes dos jogadores?");
+
+  setGameStarted(false);
+  setCurrentIndex(0);
+  setCommonWord("");
+  setImpostorIndex(null);
+  setShowWord(false);
+  setTimer(0);
+  setShowEndGame(false);
+  setRevealedImpostor(null);
+  setCategoria("");
+
+  if (!manterNomes) {
+    setPlayers([]);
   }
+}
+function prevPlayer() {
+  if (currentIndex > 0) {
+    setShowWord(false);
+    setCurrentIndex(prev => prev - 1);
+  }
+}
 
   const categorias = Object.keys(palavras) as Categoria[]
 
@@ -162,21 +173,29 @@ export default function Impostor() {
                 </button>
 
                 {showWord && (
-                  <p id="word">
+                  <p id="word" style={{ fontWeight: 'bold', fontSize: '1.5rem', margin: '10px 0' }}>
                     {currentIndex === impostorIndex
                       ? "IMPOSTOR"
                       : commonWord}
                   </p>
                 )}
 
-                {currentIndex < players.length - 1 && (
-                  <button
-                    className="primary-btn"
-                    onClick={nextPlayer}
-                  >
-                    Próximo jogador
-                  </button>
-                )}
+                <div className="navigation-btns" style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
+                  {currentIndex > 0 && (
+                    <button onClick={prevPlayer} className="primary-btn">
+                      Jogador Anterior
+                    </button>
+                  )}
+
+                  {currentIndex < players.length - 1 && (
+                    <button
+                      className="primary-btn"
+                      onClick={nextPlayer}
+                    >
+                      Próximo jogador
+                    </button>
+                  )}
+                </div>
               </>
             )}
 
