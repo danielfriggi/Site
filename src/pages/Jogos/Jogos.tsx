@@ -6,6 +6,7 @@ import qa from "../../assets/qa.gif";
 import imposter from "../../assets/Imposter.gif";
 import sueca from "../../assets/sueca.gif";
 import cs from "../../assets/coming_soon.gif";
+import lol from "../../assets/lol.png";
 
 function Jogos() {
   const jogos = [
@@ -26,6 +27,12 @@ function Jogos() {
       img: sueca,
       descricao: "Divirta-se com os amigos no clássico jogo de sueca, com vários modos diferentes. Apenas para maiores de 18 anos!",
       link: "https://play.google.com/store/apps/details?id=com.danielfriggi.Sueca",
+    },
+    {
+      nome: "Randomizer League of Legends",
+      img: lol,
+      descricao: "Quer fazer aquela baguncinha jogando Lol? É só clicar aqui",
+      link: "/Jogos/RandomizerLeagueOfLegends",
     },
     {
       nome: "Em construção",
