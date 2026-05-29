@@ -1,4 +1,4 @@
-import type { DDragonChampion, DDragonItem, BuildItem, RunePageResult } from '../types/randomizer';
+import type { DDragonChampion, BuildItem, RunePageResult } from '../types/randomizer';
 import { RUNE_TREES } from '../constants/runes';
 
 export const VERSION = '14.10.1';
