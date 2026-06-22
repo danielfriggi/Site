@@ -7,6 +7,7 @@ import RandomizerLeagueOfLegends from "./pages/Jogos/RandomizadorLeagueOfLegends
 import Ferramentas from "./pages/Ferramentas/Ferramentas"
 import Contato from "./pages/Contato"
 import Jogos from "./pages/Jogos/Jogos"
+import Chapeu from "./pages/Jogos/Chapeu/Chapeu"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Jogos/QACrisma" element={<QaCrisma/>} />
         <Route path="/Jogos/Impostor" element={<Impostor/>} />
         <Route path="/Jogos/RandomizerLeagueOfLegends" element={<RandomizerLeagueOfLegends/>} />
+        <Route path="/Jogos/Chapeu" element={<Chapeu/>} />
         <Route path="/Ferramentas/ApiSort" element={<ApiSort/>} />
         <Route path="/Ferramentas" element={<Ferramentas/>} />
         <Route path="/Jogos" element={<Jogos/>} />

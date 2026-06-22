@@ -7,6 +7,7 @@ import imposter from "../../assets/Imposter.gif";
 import sueca from "../../assets/sueca.gif";
 import cs from "../../assets/coming_soon.gif";
 import lol from "../../assets/lol.png";
+import chapeu from "../../assets/chapeu.webp";
 
 function Jogos() {
   const jogos = [
@@ -33,6 +34,12 @@ function Jogos() {
       img: lol,
       descricao: "Quer fazer aquela baguncinha jogando Lol? É só clicar aqui",
       link: "/Jogos/RandomizerLeagueOfLegends",
+    },
+    {
+      nome: "Chapéu",
+      img: chapeu,
+      descricao: "Um divertido jogo de adivinhação de palavras em equipes com 4 rodadas dinâmicas!",
+      link: "/Jogos/Chapeu",
     },
     {
       nome: "Em construção",
