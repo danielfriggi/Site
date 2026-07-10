@@ -27,7 +27,7 @@ function Jogos() {
       nome: "Sueca",
       img: sueca,
       descricao: "Divirta-se com os amigos no clássico jogo de sueca, com vários modos diferentes. Apenas para maiores de 18 anos!",
-      link: "https://play.google.com/store/apps/details?id=com.danielfriggi.Sueca",
+      link: "https://github.com/danielfriggi/Site/releases/download/v1.0.0/sueca.apk",
     },
     {
       nome: "Randomizer League of Legends",
