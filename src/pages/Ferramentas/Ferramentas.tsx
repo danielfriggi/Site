@@ -31,6 +31,18 @@ function Ferramentas() {
               <button className="tool-btn">Abrir ferramenta</button>
             </Link>
           </article>
+          <article className="tool-card">
+            <h3>Doc to Pdf</h3>
+            <p>
+              Essa ferramenta permite importar converter arquivos docx para pdf direto do navegador, em batch.
+            </p>
+            <Link 
+              to="/Ferramentas/DocToPdf" 
+              aria-label="Abrir ferramenta Organizador de APIs"
+            >
+              <button className="tool-btn">Abrir ferramenta</button>
+            </Link>
+          </article>
 
           <article className="tool-card">
             <h3>Em construção</h3>

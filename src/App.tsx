@@ -8,6 +8,7 @@ import Ferramentas from "./pages/Ferramentas/Ferramentas"
 import Contato from "./pages/Contato"
 import Jogos from "./pages/Jogos/Jogos"
 import Chapeu from "./pages/Jogos/Chapeu/Chapeu"
+import DocxToPdf from "./pages/Ferramentas/DocToPdf/dtp"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Jogos/RandomizerLeagueOfLegends" element={<RandomizerLeagueOfLegends/>} />
         <Route path="/Jogos/Chapeu" element={<Chapeu/>} />
         <Route path="/Ferramentas/ApiSort" element={<ApiSort/>} />
+        <Route path="/Ferramentas/DocToPdf" element={<DocxToPdf/>} />
         <Route path="/Ferramentas" element={<Ferramentas/>} />
         <Route path="/Jogos" element={<Jogos/>} />
         <Route path="/Contato" element={<Contato/>} />
